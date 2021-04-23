@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OPENPIBO-HOME</title>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.5/socket.io.js'></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script>
+    $(function(){
+      var socket = io();
+
+      $('#command').keypress(function(d){
+        if (d.charCode != 13)
+          return;
+
+        $('#command_val').text($('#command').val())
+        socket.emit('command', $('#command').val())
+      });
+
+      socket.on('img', function(data){
+        $('#image').attr('src', 'data:image/jpeg;charset=utf-8;base64,'+data);
+      });
+
+      socket.on('result', function(data){
+        $('#result_val').text(data)
+      });
+    });
+  </script>
+</head>
+<body>
+  <div style="border-radius:10px/10px;text-align:center;background:#9ffafa;">
+    <h2>나만의 로봇 만들기 프로젝트</h2>
+  </div>
+  <h3>* 질문 </h3>
+  <div style="border-radius:10px/10px;border:1px dotted; padding:10px;">
+    <b><i>명령하기:</b></i>
+    <input type="text" id="command" size=50% />
+    <pre>
+    * 예시)
+     - (오늘|내일) 날씨 알려줘
+     - (경제|정치|연예) 뉴스 알려줘
+     - 사진 찍어줘
+     - 일정 초기화
+     - (오늘|내일) 일정 알려줘|조회
+     - 일정등록:2020/11/27:집안 청소 하기
+     - 일정삭제:2020/11/27:1
+     - (앞으로|뒤로|왼쪽으로|오른쪽으로) 가
+    </pre>
+  </div>
+  <h3>* 결과 </h3>
+  <div style="border-radius:10px/10px;border:1px dotted; padding:10px;">
+    <b><i>You :</b></i>  <span id='command_val'></span> <br>
+    <b><i>Robot :</b></i>  <span id='result_val'></span> <br>
+    <div style="text-align:center;">
+      <img id='image'>
+    </div>
+  </div>
+</body>
+</html>

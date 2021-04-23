@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  p {
+    padding-left: 10px;
+  }
+</style>
+  <h1>캘린더</h1>
+  <h3>파이보에게 일정을 말해주세요.</h3>
+  <h3>등록한 일정을 음성으로 확인할 수 있습니다.</h3>
+  <h5>음성 명령 모드로는 일정 조회, 일정 초기화만 가능합니다.</h5>
+  <br>
+  <ul>
+    <li><h3>명령어</h3></li>
+  </ul>
+  <table width=100%>
+    <thead>
+      <tr>
+        <th>기능</th>
+        <th>명령어</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: center;">조회</td>
+        <td>
+          <p>- (오늘|내일) 일정 알려줘</p>
+          <p>- (오늘|내일) 일정 조회</p>
+          <p>- 이번주 일정 알려줘</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td style="text-align: center;">등록/삭제</td>
+        <td>
+          <p>- 일정(등록|삭제):YYYY/MM/DD:할 일</p>
+          <p>일정등록 및 삭제시, 한 자리 숫자를 표현할 때는 '01'이 아닌 '1'로 표현해주세요.</p>
+          <p>ex1) 일정등록:2020/03/09:집안 청소 하기 (X) / 일정등록:2020/3/9:집안 청소 하기 (O)</p>
+          <p>ex2) 일정삭제:2020/11/27:1</p>
+          <pre style="color:gray">
+  일정삭제는 삭제하고자 하는 날짜와 일정 순서 번호를 입력합니다.(순서는 1부터 시작합니다.)
+  일정삭제 예시는 아래와 같습니다.
+  만약 2021/4/9의 일정이 '청소.빨래.요리'의 순서로 되어있고, 빨래를 삭제하고 싶다면
+  '일정삭제:2021/4/9:2'를 입력하면 됩니다.</pre>
+          <p>- 일정 초기화</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  p {
+    padding-left: 10px;
+  }
+</style>
+  <h1>카메라</h1>
+  <h3>파이보와 사진 또는 동영상을 촬영해보세요.(사진만 저장)</h3>
+  <h5>해당 기능은 음성 명령 모드를 지원하지 않습니다.</h5>
+  <br>
+  <ul>
+    <li><h3>명령어</h3></li>
+  </ul>
+  <table width=100%>
+    <thead>
+      <tr>
+        <th>기능</th>
+        <th>명령어</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: center;">사진</td>
+        <td>
+          <p>- 사진 찍어줘</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td style="text-align: center;">동영상</td>
+        <td>
+          <p>- 동영상 찍어줘</p>
+          <p>- 그만 (촬영 중단)</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}

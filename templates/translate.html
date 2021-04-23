@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  p {
+    padding-left: 10px;
+  }
+</style>
+  <h1>번역</h1>
+  <h3>파이보를 다양하게 활용해보세요.</h3>
+  <h3>파이보와 함께 영어, 한국어 번역 서비스를 이용해보세요.</h3>
+  <h5>해당 기능은 음성 명령 모드를 지원하지 않습니다.</h5>
+  <br>
+  <ul>
+    <li><h3>사용 방법</h3></li>
+    <p>1. 번역</p>
+    <p>- 번역하고 싶은 문장을 '<b>[]</b>' 안에 넣어서 사용하세요. (영어와 한국어 번역만 지원합니다.)</p>
+    <li><h3>명령어</h3></li>
+    <table width=100%>
+      <thead>
+        <tr>
+          <th>기능</th>
+          <th>명령어</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">번역</td>
+          <td>
+            <p>- [오늘 점심 뭐먹지?] 영어로 번역해줘</p>
+            <p>- [What are you planning to do?] 한국어로 번역해줘</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ul>
+
+{% endblock %}

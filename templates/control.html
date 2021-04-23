@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  p {
+    padding-left: 10px;
+  }
+</style>
+  <h1>파이보 제어</h1>
+  <h3>파이보를 직접 제어해보세요.</h3>
+  <h3>다양한 명령어로 파이보를 제어할 수 있습니다.</h3>
+  <br>
+  <ul>
+    <li><h3>명령어</h3></li>
+  </ul>
+  <table width=100%>
+    <thead>
+      <tr>
+        <th>기능</th>
+        <th>명령어</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: center;">모션</td>
+        <td>
+          <p>- (앞으로|뒤로|왼쪽으로|오른쪽으로) 가</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td style="text-align: center;">눈</td>
+        <td>
+          <p>- 초록색 눈 켜줘</p>
+          <p>- 눈 꺼줘</p>
+          <p>  (검정색|흰색|빨간색|주황색|노란색|초록색|하늘색|파란색|보라색|분홍색)</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}
+  

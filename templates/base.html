@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>OPENPIBO-HOME</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.5/socket.io.js'></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+      $(function(){
+        var socket = io();
+
+        $('#command').keypress(function(d){
+          if (d.charCode != 13)
+            return;
+          // location.href = 'test'
+          $('#command_val').text($('#command').val())
+          socket.emit('command', $('#command').val())
+        });
+
+        socket.on('img', function(data){
+          $('#image').attr('src', 'data:image/jpeg;charset=utf-8;base64,'+data);
+        });
+
+        socket.on('result', function(data){
+          $('#result_val').text(data)
+        });
+
+        $('#voice_command').click(function(){
+          socket.emit('voice')
+        });
+
+        socket.on('voice_cmd', function(data){
+          $('#command_val').text(data)
+        })
+      });
+    </script>
+    <style>
+      #container {
+        width: 100%;
+        margin: 0px auto;
+      }
+      #content {
+        width: 80%;
+        padding: 20px;
+        border: 1px dotted #bcbcbc;
+        border-radius: 10px/10px;
+        max-height: 100%;
+        min-height: 100%;
+      }
+      #sidebar {
+        width: 15%;
+        padding: 10px 0 10px 30px;
+        border: 1px solid #bcbcbc;
+        border-radius: 10px/10px;
+        z-index: 4;
+        max-height: 100%;
+        min-height: 100%;
+        background: #f2f2f2;
+        bottom: 0;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #sidebar > a {
+        line-height: 2;
+      }
+      a {
+        font-weight: bold;
+        font-size: 1.2em;
+      }
+      a:link {
+        color: black;
+        text-decoration: none;
+      }
+      a:visited {
+        color: black;
+        text-decoration: none;
+      }
+      a:hover {
+        color: grey;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <h2 style="border-radius:10px/10px;text-align:center;background:#9ffafa;">나만의 로봇 만들기 프로젝트(TEST)</h2>
+      </div>
+      <div style="display: flex;">
+        <div id="sidebar">
+          <h2>PIBO 매뉴얼</h2>
+          <a class="title" href="{{ url_for('test') }}">명령 실행</a><br>
+          <a class="title" href="{{ url_for('calendar') }}">캘린더</a><br>
+          <a class="title" href="{{ url_for('weather') }}">날씨</a><br>
+          <a class="title" href="{{ url_for('news') }}">뉴스</a><br>
+          <a class="title" href="{{ url_for('control') }}">파이보 제어</a><br>
+          <a class="title" href="{{ url_for('camera') }}">카메라</a><br>
+          <a class="title" href="{{ url_for('translate') }}">번역</a><br>
+        </div>  
+        <div id="content">
+          {% block content %}
+          <div style="margin-bottom: 50px;">
+            <input type="text" id="command" size=100% placeholder="파이보에게 명령을 입력해보세요." onfocus="this.placeholder=''" onblur="this.placeholder='파이보에게 명령을 입력해보세요.'"/>
+            <button id="voice_command" style="cursor: pointer">음성</button>
+          </div>
+          <h3>결과</h3>
+          <div style="border-radius:10px/10px;border:1px dotted; padding:10px;">
+            <b><i>You :</b></i>  <span id='command_val'></span> <br>
+            <b><i>Robot :</b></i>  <span id='result_val'></span> <br>
+            <div style="text-align:center;">
+              <img id='image'>
+            </div>
+          </div>
+          {% endblock %}  
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

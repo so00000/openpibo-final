@@ -1,8 +1,2 @@
 # openpibo-final
-
-## 실행
-```bash
-cd openpibo-final
-~/openpibo-final $ python3 main.py
-```
-http://localhost:8888/test 경로에서 테스트
+교육용 파이보를 위한 Repository입니다.
